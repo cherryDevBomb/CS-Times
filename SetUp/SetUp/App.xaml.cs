@@ -15,10 +15,11 @@ namespace SetUp
 
             if (CrossConnectivity.Current.IsConnected)
             {
-                if (!StudentInfoModel.GetLoginInfo())
-                    MainPage = new LoginPage();
-                else
-                    MainPage = new ScheduleNavigationPage(new ScheduleView(StudentInfoModel.YearFormation, StudentInfoModel.Group, StudentInfoModel.Subgroup));
+                //if (!StudentInfoModel.GetLoginInfo())
+                //    MainPage = new LoginPage();
+                //else
+                //    MainPage = new ScheduleNavigationPage(new ScheduleView(StudentInfoModel.YearFormation, StudentInfoModel.Group, StudentInfoModel.Subgroup));
+
 
             }
             else

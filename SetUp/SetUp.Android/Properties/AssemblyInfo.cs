@@ -38,3 +38,5 @@ using Android.App;
 #else
 [assembly: Application(Debuggable=false)]
 #endif
+
+//[assembly: Application(Icon = "@mipmap/Icon")]
