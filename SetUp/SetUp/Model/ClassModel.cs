@@ -35,7 +35,12 @@ namespace SetUp.Model
             var item = obj as ClassModel;
             if (obj == null)
                 return false;
-            return (this.ClassName.Equals(item.ClassName) && this.TargetGroup.Equals(item.TargetGroup));
+            return (this.ClassName.Equals(item.ClassName) 
+                    && this.TargetGroup.Equals(item.TargetGroup)
+                    && this.Day.Equals(item.Day)
+                    && this.StartTime.Equals(item.StartTime)
+                    && this.WhichWeek.Equals(item.WhichWeek)
+                    );
         }
 
         public override int GetHashCode()

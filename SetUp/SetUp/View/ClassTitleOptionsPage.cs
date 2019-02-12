@@ -11,7 +11,12 @@ namespace SetUp.View
 {
     class ClassTitleOptionsPage : ContentPage
     {
-        private readonly List<Color> colors = new List<Color>() { Color.FromHex("5CDB95"), Color.FromHex("3AAFA9"), Color.FromHex("3B945E") };
+        private readonly List<Color> colors = new List<Color>()
+        {
+            (Color)Application.Current.Resources["cursColor"],
+            (Color)Application.Current.Resources["seminarColor"],
+            (Color)Application.Current.Resources["labColor"]
+        };
         private static int ColorIndex = 0;
         private Color MyColor;
         
@@ -51,25 +56,9 @@ namespace SetUp.View
         }
 
 
-        private AbsoluteLayout GetOptionView(String className)
+        private Grid GetOptionView(String className)
         {
-            var optionView = new AbsoluteLayout
-            {
-                Padding = new Thickness(5, 5),
-                Margin = new Thickness(16, 8)
-            };
-            AbsoluteLayout.SetLayoutBounds(optionView, new Rectangle(0, 0, 1, 1));
-            AbsoluteLayout.SetLayoutFlags(optionView, AbsoluteLayoutFlags.All);
-
             MyColor = colors[ColorIndex++ % 3];
-
-            Frame f = new Frame
-            {
-                BackgroundColor = Color.Transparent,
-                BorderColor = MyColor,
-                CornerRadius = 4,
-            };
-            optionView.Children.Add(f, new Rectangle(0, 0, 1, 1), AbsoluteLayoutFlags.All);
 
             //class name
             var classNameLabel = new Label
@@ -79,7 +68,6 @@ namespace SetUp.View
                 FontSize = Device.GetNamedSize(NamedSize.Medium, typeof(Label)),
                 FontAttributes = FontAttributes.Bold
             };
-
 
             //edit icon
             var editIcon = new FontAwesomeLabel
@@ -91,21 +79,32 @@ namespace SetUp.View
 
             Grid line = new Grid
             {
-                Margin = new Thickness(20, 20, 10, 0),
+                Margin = new Thickness(10, 0, 5, 0),
                 ColumnDefinitions =
                 {
-                    new ColumnDefinition { Width = new GridLength(0.85, GridUnitType.Star) },
-                    new ColumnDefinition { Width = new GridLength(0.15, GridUnitType.Star) },
+                    new ColumnDefinition { Width = new GridLength(0.90, GridUnitType.Star) },
+                    new ColumnDefinition { Width = new GridLength(0.10, GridUnitType.Star) },
                 },
                 ColumnSpacing = 0,
                 RowSpacing = 0
             };
             line.Children.Add(classNameLabel, 0, 0);
             line.Children.Add(editIcon, 1, 0);
-            AbsoluteLayout.SetLayoutBounds(line, new Rectangle(0, 0, 1, .7));
-            AbsoluteLayout.SetLayoutFlags(line, AbsoluteLayoutFlags.All);
 
-            optionView.Children.Add(line);
+            Frame f = new Frame
+            {
+                Content = line,
+                BackgroundColor = Color.Transparent,
+                BorderColor = MyColor,
+                CornerRadius = 4,
+            };
+
+            var optionView = new Grid
+            {
+                Padding = new Thickness(5, 5),
+                Margin = new Thickness(16, 8)
+            };
+            optionView.Children.Add(f);
 
             var tgr = new TapGestureRecognizer();
             tgr.Tapped += (s, e) =>

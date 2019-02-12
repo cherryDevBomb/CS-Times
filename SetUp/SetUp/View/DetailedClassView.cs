@@ -31,9 +31,8 @@ namespace SetUp.View
                 FontSize = Device.GetNamedSize(NamedSize.Small, typeof(Label)),
             };
 
-            Grid line = new Grid
+            Grid line0 = new Grid
             {
-                Margin = new Thickness(20, 20, 10, 0),
                 ColumnDefinitions =
                 {
                     new ColumnDefinition { Width = new GridLength(0.3, GridUnitType.Star) },
@@ -42,17 +41,49 @@ namespace SetUp.View
                 ColumnSpacing = 0,
                 RowSpacing = 0
             };
-            line.Children.Add(group, 0, 0);
-            SetLayoutBounds(line, new Rectangle(0, 0, 1, .25));
-            SetLayoutFlags(line, AbsoluteLayoutFlags.All);
+            line0.Children.Add(group, 0, 0);
 
-            SetLayoutBounds(Children[1], new Rectangle(0, 0.25, 1, 0.25));
-            SetLayoutBounds(Children[2], new Rectangle(0, 0.5, 1, 0.25));
-            SetLayoutBounds(Children[3], new Rectangle(0, 0.75, 1, 0.25));
+            Frame parent = (Frame)Children[0];
+            Grid child = (Grid)(parent).Content;
+            ((Grid)child.Children[0]).Children.Add(day, 2, 0);
+            Grid line1 = (Grid)child.Children[0];
+            Grid line2 = (Grid)child.Children[1];
+            Grid line3 = (Grid)child.Children[2];
 
-            ((Grid)Children[1]).Children.Add(day, 2, 0);
 
-            Children.Add(line);
+            Grid lines = new Grid
+            {
+                RowSpacing = 10,
+                RowDefinitions =
+                {
+                new RowDefinition { Height = new GridLength(0, GridUnitType.Auto) },
+                new RowDefinition { Height = new GridLength(0, GridUnitType.Auto) },
+                new RowDefinition { Height = new GridLength(0, GridUnitType.Auto) },
+                new RowDefinition { Height = new GridLength(0, GridUnitType.Auto) },
+                }
+            };
+            lines.Children.Add(line0, 0, 0);
+            lines.Children.Add(line1, 0, 1);
+            lines.Children.Add(line2, 0, 2);
+            lines.Children.Add(line3, 0, 3);
+
+            parent.Content = lines;
+
+            //Frame f = new Frame
+            //{
+            //    Content = lines,
+            //    BackgroundColor = Color.Transparent,
+            //    BorderColor = MyColor,
+            //    CornerRadius = 4,
+            //};
+
+            
+            //child.RowDefinitions.Insert(0, new RowDefinition { Height = new GridLength(0, GridUnitType.Auto) });
+            
+            //((Frame)Children[0]).Content
+            //((Grid)Children[1]).Children.Add(day, 2, 0);
+
+            //Children.Add(line);
         }
     }
 }

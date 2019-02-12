@@ -8,37 +8,35 @@ using Xamarin.Forms;
 
 namespace SetUp.View
 {
-    class ClassView : AbsoluteLayout
+    class ClassView : StackLayout
     {
-        private readonly Color CursColor = Color.FromHex("5CDB95");
-        private readonly Color SeminarColor = Color.FromHex("3AAFA9");
-        private readonly Color LabColor = Color.FromHex("3B945E");
+        //private readonly Color CursColor = Color.FromHex("5CDB95");
+        //private readonly Color SeminarColor = Color.FromHex("3AAFA9");
+        //private readonly Color LabColor = Color.FromHex("3B945E");
         public Color MyColor { get; set; }
         private ClassModel ClassObj { get; set; }
 
         public ClassView(ClassModel model)
         {
             ClassObj = model;
-
+            
             Padding = new Thickness(5, 5);
-            SetLayoutBounds(this, new Rectangle(0, 0, 1, 1));
-            SetLayoutFlags(this, AbsoluteLayoutFlags.All);
             Margin = new Thickness(16, 8, 16, 0);
 
             String classIconText = "";
             if (model.TypeOfClass == "Curs")
             {
-                MyColor = CursColor;
+                MyColor = (Color)Application.Current.Resources["cursColor"];
                 classIconText = "C";
             }
             else if (model.TypeOfClass == "Seminar")
             {
-                MyColor = SeminarColor;
+                MyColor = (Color)Application.Current.Resources["seminarColor"];
                 classIconText = "S";
             }
             if (model.TypeOfClass == "Laborator")
             {
-                MyColor = LabColor;
+                MyColor = (Color)Application.Current.Resources["labColor"];
                 classIconText = "L";
             }
 
@@ -67,16 +65,6 @@ namespace SetUp.View
                 }
             };
 
-
-            Frame f = new Frame
-            {
-                BackgroundColor = Color.Transparent,
-                BorderColor = MyColor,
-                CornerRadius = 4,
-            };
-            Children.Add(f, new Rectangle(0, 0, 1, 1), AbsoluteLayoutFlags.All);
-
-
             string startTime = ClassObj.StartTime.ToString("c");
             startTime = startTime.Substring(0, startTime.Length - 3);
             string endTime = ClassObj.EndTime.ToString("c");
@@ -99,17 +87,7 @@ namespace SetUp.View
             {
                 Text = timeFormat,
                 Margin = 0,
-                FontSize = Device.GetNamedSize(NamedSize.Medium, typeof(Label)),
-            };
-
-
-            //settings icon
-            var settingsIcon = new FontAwesomeLabel
-            {
-                Text = Icon.FAPencil,
-                Margin = 0,
                 FontSize = Device.GetNamedSize(NamedSize.Small, typeof(Label)),
-                TextColor = MyColor
             };
 
 
@@ -122,7 +100,7 @@ namespace SetUp.View
                 FontSize = Device.GetNamedSize(NamedSize.Medium, typeof(Label)),
                 FontAttributes = FontAttributes.Bold
             };
-            
+
 
             //location icon
             var locationIcon = new FontAwesomeLabel
@@ -132,7 +110,7 @@ namespace SetUp.View
                 FontSize = Device.GetNamedSize(NamedSize.Medium, typeof(Label)),
                 TextColor = MyColor
             };
-            
+
 
             //location value
             var room = new Label
@@ -141,7 +119,7 @@ namespace SetUp.View
                 Margin = 0,
                 FontSize = Device.GetNamedSize(NamedSize.Small, typeof(Label)),
             };
-            
+
 
             //teacher icon
             var teacherIcon = new FontAwesomeLabel
@@ -151,7 +129,7 @@ namespace SetUp.View
                 FontSize = Device.GetNamedSize(NamedSize.Medium, typeof(Label)),
                 TextColor = MyColor
             };
-            
+
 
             //teacher
             var teacher = new Label
@@ -160,30 +138,28 @@ namespace SetUp.View
                 Margin = 0,
                 FontSize = Device.GetNamedSize(NamedSize.Small, typeof(Label)),
             };
-           
+
 
 
             Grid line1 = new Grid
             {
-                Margin = new Thickness(20, 20, 10, 0),
+                //Margin = new Thickness(20, 20, 10, 0),
                 ColumnDefinitions =
                 {
                     new ColumnDefinition { Width = new GridLength(0.1, GridUnitType.Star) },
-                    new ColumnDefinition { Width = new GridLength(0.55, GridUnitType.Star) },
-                    new ColumnDefinition { Width = new GridLength(0.35, GridUnitType.Star) }
+                    new ColumnDefinition { Width = new GridLength(0.50, GridUnitType.Star) },
+                    new ColumnDefinition { Width = new GridLength(0.40, GridUnitType.Star) }
                 },
                 ColumnSpacing = 0,
                 RowSpacing = 0
             };
             line1.Children.Add(timeIcon, 0, 0);
             line1.Children.Add(time, 1, 0);
-            SetLayoutBounds(line1, new Rectangle(0, 0, 1, .3));
-            SetLayoutFlags(line1, AbsoluteLayoutFlags.All);
 
 
             Grid line2 = new Grid
             {
-                Margin = new Thickness(20, 20, 10, 0),
+                //Margin = new Thickness(20, 0, 10, 0),
                 ColumnDefinitions =
                 {
                     new ColumnDefinition { Width = new GridLength(0.1, GridUnitType.Star) },
@@ -192,16 +168,14 @@ namespace SetUp.View
                 RowSpacing = 0,
                 ColumnSpacing = 0
             };
-            
+
             line2.Children.Add(classIcon, 0, 0);
             line2.Children.Add(className, 1, 0);
-            SetLayoutBounds(line2, new Rectangle(0, .3, 1, .3));
-            SetLayoutFlags(line2, AbsoluteLayoutFlags.All);
 
 
             Grid line3 = new Grid
             {
-                Margin = new Thickness(20, 20, 10, 0),
+                //Margin = new Thickness(20, 0, 10, 10),
                 ColumnDefinitions =
                 {
                     new ColumnDefinition { Width = new GridLength(0.1, GridUnitType.Star) },
@@ -214,15 +188,30 @@ namespace SetUp.View
             line3.Children.Add(room, 1, 0);
             line3.Children.Add(teacherIcon, 2, 0);
             line3.Children.Add(teacher, 3, 0);
-            SetLayoutBounds(line3, new Rectangle(0, .65, 1, .35));
-            SetLayoutFlags(line3, AbsoluteLayoutFlags.All);
 
 
-            Children.Add(line1);
-            Children.Add(line2);
-            Children.Add(line3);
+            Grid lines = new Grid
+            {
+                RowSpacing = 10,
+                RowDefinitions =
+                {
+                new RowDefinition { Height = new GridLength(0, GridUnitType.Auto) },
+                new RowDefinition { Height = new GridLength(0, GridUnitType.Auto) },
+                new RowDefinition { Height = new GridLength(0, GridUnitType.Auto) },
+                }
+            };
+            lines.Children.Add(line1, 0, 0);
+            lines.Children.Add(line2, 0, 1);
+            lines.Children.Add(line3, 0, 2);
 
+            Frame f = new Frame
+            {
+                Content = lines,
+                BackgroundColor = Color.Transparent,
+                BorderColor = MyColor,
+                CornerRadius = 4,
+            };
+            Children.Add(f);
         }
-
     }
 }

@@ -1,6 +1,10 @@
+using Android;
+using Android.Content.PM;
 using Plugin.Connectivity;
 using SetUp.Model;
 using SetUp.View;
+using System;
+using System.IO;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -12,25 +16,20 @@ namespace SetUp
         public App()
         {
             InitializeComponent();
+            TimeManager.SetCurrentTimes();
 
             if (CrossConnectivity.Current.IsConnected)
             {
-                //if (!StudentInfoModel.GetLoginInfo())
-                //    MainPage = new LoginPage();
-                //else
-                //    MainPage = new ScheduleNavigationPage(new ScheduleView(StudentInfoModel.YearFormation, StudentInfoModel.Group, StudentInfoModel.Subgroup));
-
-
+                if (!StudentInfoModel.GetLoginInfo())
+                    MainPage = new LoginPage();
+                else
+                    MainPage = new ScheduleNavigationPage(new ScheduleView(StudentInfoModel.YearFormation, StudentInfoModel.Group, StudentInfoModel.Subgroup));
             }
             else
             {
-                MainPage = new ErrorPage(); 
+                MainPage = new ErrorPage();
             }
-
-            //StudentInfoModel.YearFormation = "IG2";
-            //StudentInfoModel.Group = "721";
-            //StudentInfoModel.Subgroup = "/2";
-            //MainPage = new ScheduleNavigationPage(new ScheduleView(StudentInfoModel.YearFormation, StudentInfoModel.Group, StudentInfoModel.Subgroup));
+            
         }
 
 

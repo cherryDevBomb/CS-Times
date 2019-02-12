@@ -62,22 +62,24 @@ namespace SetUp.View
                 Title = "Specializarea",
                 ItemsSource = formations,
                 Margin = new Thickness(0, 50, 0, 0),
-                TextColor = Color.FromHex("3AAFA9"),
+                TextColor = (Color)Application.Current.Resources["seminarColor"],
             };
             FormationPicker.SelectedIndexChanged += OnFormationsPickerSelectedIndexChanged;
 
             YearPicker = new Picker
             {
                 Title = "Anul de studiu",
-                TextColor = Color.FromHex("3AAFA9"),
+                TextColor = (Color)Application.Current.Resources["seminarColor"],
+                IsVisible = false
             };
             YearPicker.SelectedIndexChanged += OnYearPickerSelectedIndexChanged;
 
             GroupPicker = new Picker()
             {
                 Title = "Grupa",
-                TextColor = Color.FromHex("3AAFA9"),
-                
+                TextColor = (Color)Application.Current.Resources["seminarColor"],
+                IsVisible = false
+
             };
             GroupPicker.SelectedIndexChanged += OnGroupPickerSelectedIndexChanged;
 
@@ -85,8 +87,8 @@ namespace SetUp.View
             {
                 Title = "Subgrupa",
                 ItemsSource = new List<String>() { "/1", "/2" },
-                TextColor = Color.FromHex("3AAFA9"),
-                
+                TextColor = (Color)Application.Current.Resources["seminarColor"],
+                IsVisible = false
             };
             SubgroupPicker.SelectedIndexChanged += OnSubgroupPickerSelectedIndexChanged;
 
@@ -100,8 +102,8 @@ namespace SetUp.View
             {
                 Text = "Submit",
                 Margin = new Thickness(0, 30, 0, 0),
-                BackgroundColor = Color.FromHex("5CDB95"),
-                BorderColor = Color.FromHex("5CDB95"),
+                BackgroundColor = (Color)Application.Current.Resources["cursColor"],
+                BorderColor = (Color)Application.Current.Resources["cursColor"],
                 BorderWidth = 2,
                 CornerRadius = 4,
                 IsVisible = false
@@ -123,6 +125,9 @@ namespace SetUp.View
         {
             GroupPicker.SelectedIndex = -1;
             SubgroupPicker.SelectedIndex = -1;
+            GroupPicker.IsVisible = false;
+            SubgroupPicker.IsVisible = false;
+            Login.IsVisible = false;
 
             var picker = (Picker)sender;
             int selectedIndex = picker.SelectedIndex;
@@ -137,7 +142,7 @@ namespace SetUp.View
                     years.Add(year);
                 }
                 YearPicker.ItemsSource = years;
-
+                YearPicker.IsVisible = true;
                 StudentInfoModel.YearFormation = GetDictOfCodes()[selectedFormation];
             }
         }
@@ -146,6 +151,8 @@ namespace SetUp.View
         {
             GroupPicker.SelectedIndex = -1;
             SubgroupPicker.SelectedIndex = -1;
+            SubgroupPicker.IsVisible = false;
+            Login.IsVisible = false;
 
             var picker = (Picker)sender;
             int selectedIndex = picker.SelectedIndex;
@@ -157,7 +164,7 @@ namespace SetUp.View
                 {
 
                     StringBuilder builder = new StringBuilder(lastYearFormation);
-                    builder[lastYearFormation.Length-1] = selectedYear[0]; 
+                    builder[lastYearFormation.Length - 1] = selectedYear[0];
                     StudentInfoModel.YearFormation = builder.ToString();
                 }
                 else
@@ -172,12 +179,14 @@ namespace SetUp.View
                     groups.Add(group);
                 }
                 GroupPicker.ItemsSource = groups;
+                GroupPicker.IsVisible = true;
             }
         }
 
         void OnGroupPickerSelectedIndexChanged(object sender, EventArgs e)
         {
             SubgroupPicker.SelectedIndex = -1;
+            Login.IsVisible = false;
 
             var picker = (Picker)sender;
             int selectedIndex = picker.SelectedIndex;
@@ -186,6 +195,7 @@ namespace SetUp.View
                 String selectedGroup = (string)picker.ItemsSource[selectedIndex];
                 StudentInfoModel.Group = selectedGroup;
             }
+            SubgroupPicker.IsVisible = true;
         }
 
         void OnSubgroupPickerSelectedIndexChanged(object sender, EventArgs e)

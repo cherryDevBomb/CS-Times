@@ -28,8 +28,8 @@ namespace SetUp.View
 
             Frame f1 = new Frame
             {
-                BackgroundColor = Color.FromHex("5CDB95"),
-                BorderColor = Color.FromHex("5CDB95"),
+                BackgroundColor = (Color)Application.Current.Resources["cursColor"],
+                BorderColor = (Color)Application.Current.Resources["cursColor"],
                 CornerRadius = 4,
                 Margin = new Thickness(16, 8),
                 Content = new Label
@@ -49,7 +49,7 @@ namespace SetUp.View
             var msg = new Label
             {
                 Text = "Custom edit your class",
-                TextColor = Color.FromHex("3AAFA9"),
+                TextColor = (Color)Application.Current.Resources["seminarColor"],
                 FontAttributes = FontAttributes.Bold,
                 FontSize = Device.GetNamedSize(NamedSize.Large, typeof(Label)),
                 Margin = 0,
@@ -68,7 +68,7 @@ namespace SetUp.View
             Frame f2 = new Frame
             {
                 BackgroundColor = Color.Transparent,
-                BorderColor = Color.FromHex("3AAFA9"),
+                BorderColor = (Color)Application.Current.Resources["cursColor"],
                 CornerRadius = 4,
                 Margin = new Thickness(16, 8),
                 Content = msg,

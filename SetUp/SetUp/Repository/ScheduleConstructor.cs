@@ -10,61 +10,28 @@ namespace SetUp.Repository
         public static String GetURL(String formation)
         {
             String urlBuilder = "http://www.cs.ubbcluj.ro/files/orar/";
-            DateTime currentDate = DateTime.Now;
             String year = "";
-            int month = currentDate.Month;
-            if (month > 9 || month < 2)
+            if (TimeManager.Semester == 1)
             {
-                year = currentDate.Year.ToString();
-                year = year + "-1";
+                DateTime currentDate = DateTime.Now;
+                if (currentDate.Month > 9)
+                {
+                    year = currentDate.Year.ToString() + "-1";
+                }
+                else
+                {
+                    year = (currentDate.Year - 1).ToString() + "-1";
+                }
             }
             else
             {
-                var yearNr = currentDate.Year;
-                yearNr = yearNr - 1;
-                year = yearNr.ToString();
+                DateTime currentDate = DateTime.Now;
+                year = currentDate.Year.ToString() + "-2";
             }
             urlBuilder = urlBuilder + year + "/tabelar/" + formation + ".html";
             return urlBuilder;
         }
 
-        public static int GetCurrentWeekNumber()
-        {
-            DateTimeFormatInfo dfi = DateTimeFormatInfo.CurrentInfo;
-            Calendar cal = dfi.Calendar;
-
-            DateTime start = DateTime.Now;
-            DateTime now = DateTime.Now;
-
-            int weeksPassed = 0;
-
-            if (now.Month > 9)
-            {
-                start = new DateTime(now.Year, 10, 1);
-                int startWeek = cal.GetWeekOfYear(start, dfi.CalendarWeekRule, dfi.FirstDayOfWeek);
-                int thisWeek = cal.GetWeekOfYear(now, dfi.CalendarWeekRule, dfi.FirstDayOfWeek);
-                weeksPassed = thisWeek - startWeek + 1;
-            }
-            else if (now.Month < 2)
-            {
-                DateTime newYear = new DateTime(now.Year, 1, 1);
-                weeksPassed = 12 + cal.GetWeekOfYear(newYear, dfi.CalendarWeekRule, dfi.FirstDayOfWeek) - 1;
-            }
-            else if (now.Month >= 2 && now.Month <= 9)
-            {
-                start = new DateTime(now.Year, 2, 25);
-                int startWeek = cal.GetWeekOfYear(start, dfi.CalendarWeekRule, dfi.FirstDayOfWeek);
-                int thisWeek = cal.GetWeekOfYear(now, dfi.CalendarWeekRule, dfi.FirstDayOfWeek);
-                weeksPassed = thisWeek - startWeek + 1;
-                if (weeksPassed > 9)
-                {
-                    weeksPassed--;
-                }
-
-            }
-
-            return weeksPassed;
-        }
 
         public static ScheduleModel GetSchedule(String yearFormation, String group, String subgroup, int weekNr)
         {

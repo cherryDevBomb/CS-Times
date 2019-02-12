@@ -41,7 +41,7 @@ namespace SetUp.View
             {
                 Title = "Start time",
                 ItemsSource = hours,
-                TextColor = Color.FromHex("3AAFA9"),
+                TextColor = (Color)Application.Current.Resources["seminarColor"],
             };
             StartTimePicker.SelectedIndexChanged += OnStartTimePickerSelectedIndexChanged;
 
@@ -49,7 +49,7 @@ namespace SetUp.View
             {
                 Title = "Day",
                 ItemsSource = new List<String>() { "Luni", "Marti", "Miercuri", "Joi", "Vineri" },
-                TextColor = Color.FromHex("3AAFA9"),
+                TextColor = (Color)Application.Current.Resources["seminarColor"],
             };
             DayPicker.SelectedIndexChanged += OnDayPickerSelectedIndexChanged;
 
@@ -57,10 +57,10 @@ namespace SetUp.View
             var saveButton = new Button
             {
                 Text = "Save changes",
-                BackgroundColor = Color.FromHex("5CDB95"),
+                BackgroundColor = (Color)Application.Current.Resources["cursColor"],
                 BorderWidth = 2,
                 CornerRadius = 4,
-                BorderColor = Color.FromHex("5CDB95"),
+                BorderColor = (Color)Application.Current.Resources["cursColor"],
                 IsVisible = true,
             };
             saveButton.Clicked += OnSaveButtonClicked;

@@ -77,7 +77,11 @@ namespace SetUp.Repository
                 String html = GetSourceFromHtml(ScheduleConstructor.GetURL(formation));
                 doc.LoadHtml(html);
             }
-            catch (Exception) { }
+            catch (Exception e)
+            {
+                String info = e.Message + " in loadHTLM " + e.StackTrace;
+                throw new Exception(info);
+            }
 
             List<String> groups = new List<String>();
             Boolean firstHeader = true;
@@ -170,6 +174,7 @@ namespace SetUp.Repository
                             c.Day = newC.Day;
                             c.StartTime = newC.StartTime;
                             c.EndTime = newC.EndTime;
+                            c.WhichWeek = newC.WhichWeek;
                         }
                     }
                 }
@@ -205,9 +210,9 @@ namespace SetUp.Repository
                         if (c.ClassName == newC.ClassName && c.TypeOfClass == newC.TypeOfClass &&
                             (c.TargetGroup == StudentInfoModel.YearFormation || c.TargetGroup == StudentInfoModel.Group || c.TargetGroup == (StudentInfoModel.Group + StudentInfoModel.Subgroup)))
                         {
-                            c.TargetGroup = c.TargetGroup + " abandonen";
+                            c.TargetGroup = c.TargetGroup + " ";
                         }
-                        if (c.ClassName == newC.ClassName && c.TypeOfClass == newC.TypeOfClass && c.Day == newC.Day && c.StartTime == newC.StartTime)
+                        if (c.ClassName == newC.ClassName && c.TypeOfClass == newC.TypeOfClass && c.Day == newC.Day && c.StartTime == newC.StartTime && c.WhichWeek == newC.WhichWeek)
                         {
                             if (c.TypeOfClass == "Seminar")
                                 c.TargetGroup = StudentInfoModel.Group;

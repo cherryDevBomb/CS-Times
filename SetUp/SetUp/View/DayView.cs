@@ -16,17 +16,30 @@ namespace SetUp.View
             return date;
         }
 
-        public DayView(DayModel dayModel, int date)
+        public DayView(DayModel dayModel, DateTime date, bool free)
         {
             DayObj = dayModel;
-            Title = DayObj.DayName.Substring(0, 2).ToUpper() + "\n" + ConvertDate(date); 
+            Title = DayObj.DayName.Substring(0, 2).ToUpper() + "\n" + ConvertDate(date.Day); 
             Padding = new Thickness(0, 8);
-
             var layout = new StackLayout();
 
-            //add class views to day view
-            foreach (ClassModel clas in DayObj.Classes)
-                layout.Children.Add(new ClassView(clas));
+            if (!free && !TimeManager.IsFreeDay(date))
+            {
+                //add class views to day view
+                foreach (ClassModel clas in DayObj.Classes)
+                    layout.Children.Add(new ClassView(clas));
+            }
+            else
+            {
+                layout.Children.Add(new Label
+                {
+                    Text = "Well deserved rest",
+                    FontSize = Device.GetNamedSize(NamedSize.Large, typeof(Label)),
+                    HorizontalOptions = LayoutOptions.Center,
+                    VerticalOptions = LayoutOptions.Center,
+                    Margin = new Thickness(0, 100),
+                });
+            }
 
             var view = new ScrollView()
             {

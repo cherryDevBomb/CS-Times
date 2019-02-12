@@ -1,5 +1,6 @@
-﻿location
-prof site
-themes
-block next pickers on login
-notes to class
+﻿
+
+! change date in TimeManager to now
+! at edit classes - put current day value as default on combobox
+
+problems: edit classes move pencil to right

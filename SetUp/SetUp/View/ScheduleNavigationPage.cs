@@ -7,17 +7,13 @@ namespace SetUp.View
 {
     public class ScheduleNavigationPage : NavigationPage
     {
-        private int CurrentWeek = ScheduleConstructor.GetCurrentWeekNumber();
+        private int CurrentWeek { get; set; }
 
         public ScheduleNavigationPage(Page p) : base(p)
         {
-            BarBackgroundColor = Color.FromHex("#17252A");
+            BarBackgroundColor = (Color)Application.Current.Resources["barBackgroundColor"];            
             AddNextButton();
             AddSecondaryMenuItems();
-
-            int dayNr = (int)DateTime.Now.DayOfWeek;
-            if (dayNr == 0 || dayNr == 6)
-                CurrentWeek++;
         }
 
         private void AddSecondaryMenuItems()
@@ -42,7 +38,7 @@ namespace SetUp.View
         {
             var nextLabel = new ToolbarItem
             {
-                Text = "Saptamana  " + CurrentWeek,
+                Text = "Saptamana  " + TimeManager.GetAcademicWeekNr(TimeManager.WeekNr),
                 Priority = 0
             };
             var nextPageBtn = new ToolbarItem
@@ -54,15 +50,17 @@ namespace SetUp.View
 
             nextPageBtn.Clicked += OnNextPageButtonClicked;
             ToolbarItems.Add(nextPageBtn);
-            ToolbarItems.Add(nextLabel);
+            if (TimeManager.GetAcademicWeekNr(TimeManager.WeekNr) != -1)
+            {
+                ToolbarItems.Add(nextLabel);
+            }
         }
 
         private void AddPrevButton()
         {
-            int nextWeekNr = CurrentWeek + 1;
             var prevLabel = new ToolbarItem
             {
-                Text = "Saptamana  " + nextWeekNr,
+                Text = "Saptamana  " + TimeManager.GetAcademicWeekNr(TimeManager.WeekNr + 1),
                 Priority = 0
             };
             var prevPageBtn = new ToolbarItem
@@ -73,12 +71,17 @@ namespace SetUp.View
             };
             prevPageBtn.Clicked += OnPrevPageButtonClicked;
             ToolbarItems.Add(prevPageBtn);
-            ToolbarItems.Add(prevLabel);
+
+            if (TimeManager.GetAcademicWeekNr(TimeManager.WeekNr + 1) != -1)
+            {
+                ToolbarItems.Add(prevLabel);
+            }
         }
+
 
         async void OnNextPageButtonClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new ScheduleView(StudentInfoModel.YearFormation, StudentInfoModel.Group, StudentInfoModel.Subgroup, CurrentWeek + 1));
+            await Navigation.PushAsync(new ScheduleView(StudentInfoModel.YearFormation, StudentInfoModel.Group, StudentInfoModel.Subgroup, TimeManager.WeekNr + 1));
             ToolbarItems.Clear();
             AddPrevButton();
             AddSecondaryMenuItems();
@@ -96,7 +99,7 @@ namespace SetUp.View
         {
             var updateSchedulePage = new NavigationPage(new ClassTitleOptionsPage())
             {
-                BarBackgroundColor = Color.FromHex("#17252A")
+                BarBackgroundColor = (Color)Application.Current.Resources["barBackgroundColor"]
             };
             await Navigation.PushModalAsync(updateSchedulePage);
 
