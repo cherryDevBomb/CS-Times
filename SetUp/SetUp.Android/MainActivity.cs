@@ -21,19 +21,6 @@ namespace SetUp.Droid
             ToolbarResource = Resource.Layout.Toolbar;
             base.OnCreate(bundle);
 
-
-            //if (ContextCompat.CheckSelfPermission(this, Manifest.Permission.Internet) == (int)Permission.Granted)
-            //{
-            //    // We have permission, go ahead and use the camera.
-            //}
-            //else
-            //{
-            //    // Camera permission is not granted. If necessary display rationale & request.
-            //    ActivityCompat.RequestPermissions(this, new String[] { Manifest.Permission.Internet }, 1);
-            //}
-
-
-
             global::Xamarin.Forms.Forms.Init(this, bundle);
             LoadApplication(new App());
         }

@@ -36,22 +36,36 @@ namespace SetUp.View
             {
                 hours.Add(i + ":00");
             }
-
+            String oldHour = ClassMdl.StartTime.Hours + ":00";
             var StartTimePicker = new Picker()
             {
-                Title = "Start time",
+                Title = oldHour,
                 ItemsSource = hours,
-                TextColor = (Color)Application.Current.Resources["seminarColor"],
+                TextColor = (Color)Application.Current.Resources["cursColor"],
             };
             StartTimePicker.SelectedIndexChanged += OnStartTimePickerSelectedIndexChanged;
 
+
             var DayPicker = new Picker()
             {
-                Title = "Day",
+                Title = ClassMdl.Day,
                 ItemsSource = new List<String>() { "Luni", "Marti", "Miercuri", "Joi", "Vineri" },
-                TextColor = (Color)Application.Current.Resources["seminarColor"],
+            TextColor = (Color)Application.Current.Resources["seminarColor"],
             };
             DayPicker.SelectedIndexChanged += OnDayPickerSelectedIndexChanged;
+
+
+            var WeekPicker = new Picker()
+            {
+                Title = ClassMdl.WhichWeek,
+                ItemsSource = new List<String>() { "", "1", "2" },
+                TextColor = (Color)Application.Current.Resources["labColor"],
+            };
+            WeekPicker.SelectedIndexChanged += OnWeekPickerSelectedIndexChanged;
+            if (ClassMdl.WhichWeek == "")
+            {
+                WeekPicker.IsVisible = false;
+            }
 
 
             var saveButton = new Button
@@ -67,6 +81,7 @@ namespace SetUp.View
 
             layout.Children.Add(StartTimePicker);
             layout.Children.Add(DayPicker);
+            layout.Children.Add(WeekPicker);
             layout.Children.Add(saveButton);
             Content = layout;
         }
@@ -102,10 +117,23 @@ namespace SetUp.View
             }
         }
 
+
+        void OnWeekPickerSelectedIndexChanged(object sender, EventArgs e)
+        {
+            var picker = (Picker)sender;
+            int selectedIndex = picker.SelectedIndex;
+            if (selectedIndex != -1)
+            {
+                String selectedWeek = (string)picker.ItemsSource[selectedIndex];
+                ClassMdl.WhichWeek = selectedWeek;
+            }
+        }
+
         void OnSaveButtonClicked(object sender, EventArgs e)
         {
             WriteToFile();
         }
+
 
         void WriteToFile()
         {
