@@ -25,10 +25,10 @@ namespace SetUp.Model
 
         public static void SetCurrentTimes()
         {
-            //WeekNr = GetWeekNr(DateTime.Now);
+            //Today = DateTime.Now;
+            //WeekNr = GetWeekNr(Today);
 
-            Today = new DateTime(2019, 01, 7);
-            //WeekNr = GetWeekNr(new DateTime(2019, 01, 7));
+            Today = new DateTime(2018, 03, 7);
             WeekNr = GetWeekNr(Today);
 
             Semester = GetSemester(WeekNr);

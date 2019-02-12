@@ -11,9 +11,9 @@ namespace SetUp.Repository
         {
             String urlBuilder = "http://www.cs.ubbcluj.ro/files/orar/";
             String year = "";
+            DateTime currentDate = TimeManager.Today;     //DateTime.Now;
             if (TimeManager.Semester == 1)
-            {
-                DateTime currentDate = DateTime.Now;
+            { 
                 if (currentDate.Month > 9)
                 {
                     year = currentDate.Year.ToString() + "-1";
@@ -25,8 +25,7 @@ namespace SetUp.Repository
             }
             else
             {
-                DateTime currentDate = DateTime.Now;
-                year = currentDate.Year.ToString() + "-2";
+                year = (currentDate.Year - 1).ToString() + "-2";
             }
             urlBuilder = urlBuilder + year + "/tabelar/" + formation + ".html";
             return urlBuilder;
