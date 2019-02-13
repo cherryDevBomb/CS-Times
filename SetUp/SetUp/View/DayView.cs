@@ -18,6 +18,7 @@ namespace SetUp.View
 
         public DayView(DayModel dayModel, DateTime date, bool free)
         {
+            //BackgroundColor = Color.FromHex("#121d21");
             DayObj = dayModel;
             Title = DayObj.DayName.Substring(0, 2).ToUpper() + "\n" + ConvertDate(date.Day); 
             Padding = new Thickness(0, 8);

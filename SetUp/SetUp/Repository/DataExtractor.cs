@@ -143,43 +143,6 @@ namespace SetUp.Repository
                     classes.Add(c);
             }
 
-            //apply custom edits
-            try
-            {
-                String filename = "CustomEditedClasses" + StudentInfoModel.Group + StudentInfoModel.Subgroup[1] + ".txt";
-                var filepath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), filename);
-                List<ClassModel> readFromFile = new List<ClassModel>();
-
-                using (var reader = new StreamReader(filepath))
-                {
-                    String line = reader.ReadLine();
-                    String[] elems = line.Split(',');
-
-                    String t = elems[2];
-                    String[] times = t.Split('-');
-                    int start = Int32.Parse((times[0].Split(':'))[0]);
-                    int end = Int32.Parse((times[1].Split(':'))[0]);
-
-                    ClassModel newClass = new ClassModel(elems[1], new TimeSpan(start, 0, 0), new TimeSpan(end, 0, 0), elems[4], elems[6], elems[5], elems[0], elems[3], elems[7]);
-                    readFromFile.Add(newClass);
-                    System.Diagnostics.Debug.WriteLine(line);
-                }
-
-                foreach (ClassModel c in classes)
-                {
-                    foreach (ClassModel newC in readFromFile)
-                    {
-                        if (c.ClassName == newC.ClassName && c.TargetGroup == newC.TargetGroup && c.TypeOfClass == newC.TypeOfClass)
-                        {
-                            c.Day = newC.Day;
-                            c.StartTime = newC.StartTime;
-                            c.EndTime = newC.EndTime;
-                            c.WhichWeek = newC.WhichWeek;
-                        }
-                    }
-                }
-            }
-            catch (Exception) {}
 
             //replace interchanged classes
             try
@@ -224,6 +187,45 @@ namespace SetUp.Repository
             }
             catch (Exception) { }
 
+
+            //apply custom edits
+            try
+            {
+                String filename = "CustomEditedClasses" + StudentInfoModel.Group + StudentInfoModel.Subgroup[1] + ".txt";
+                var filepath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), filename);
+                List<ClassModel> readFromFile = new List<ClassModel>();
+
+                using (var reader = new StreamReader(filepath))
+                {
+                    String line = reader.ReadLine();
+                    String[] elems = line.Split(',');
+
+                    String t = elems[2];
+                    String[] times = t.Split('-');
+                    int start = Int32.Parse((times[0].Split(':'))[0]);
+                    int end = Int32.Parse((times[1].Split(':'))[0]);
+
+                    ClassModel newClass = new ClassModel(elems[1], new TimeSpan(start, 0, 0), new TimeSpan(end, 0, 0), elems[4], elems[6], elems[5], elems[0], elems[3], elems[7]);
+                    readFromFile.Add(newClass);
+                    System.Diagnostics.Debug.WriteLine(line);
+                }
+
+                foreach (ClassModel c in classes)
+                {
+                    foreach (ClassModel newC in readFromFile)
+                    {
+                        if (c.ClassName == newC.ClassName && c.TargetGroup == newC.TargetGroup && c.TypeOfClass == newC.TypeOfClass)
+                        {
+                            c.Day = newC.Day;
+                            c.StartTime = newC.StartTime;
+                            c.EndTime = newC.EndTime;
+                            c.WhichWeek = newC.WhichWeek;
+                        }
+                    }
+                }
+            }
+            catch (Exception) { }
+
             //delete removed classes
             try
             {
@@ -259,7 +261,6 @@ namespace SetUp.Repository
             }
             catch (Exception) { }
 
-            //---
 
             allClasses = classes;
 

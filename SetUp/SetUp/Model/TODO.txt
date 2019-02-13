@@ -5,3 +5,5 @@
 
 - find resources
 
+
+old curscolor #5CDB95 

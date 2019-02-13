@@ -5,7 +5,7 @@
 	<Application.Resources>
         <ResourceDictionary>
             <Color x:Key="barBackgroundColor">#17252A</Color>
-            <Color x:Key="cursColor">#5CDB95</Color>
+            <Color x:Key="cursColor">#5cdba2</Color>
             <Color x:Key="seminarColor">#3AAFA9</Color>
             <Color x:Key="labColor">#3B945E</Color>
         </ResourceDictionary>
