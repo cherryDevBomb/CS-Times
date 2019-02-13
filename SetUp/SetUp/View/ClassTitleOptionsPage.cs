@@ -82,7 +82,7 @@ namespace SetUp.View
                 Margin = new Thickness(10, 0, 5, 0),
                 ColumnDefinitions =
                 {
-                    new ColumnDefinition { Width = new GridLength(0.90, GridUnitType.Star) },
+                    new ColumnDefinition { Width = new GridLength(0.80, GridUnitType.Star) },
                     new ColumnDefinition { Width = new GridLength(0.10, GridUnitType.Star) },
                 },
                 ColumnSpacing = 0,
