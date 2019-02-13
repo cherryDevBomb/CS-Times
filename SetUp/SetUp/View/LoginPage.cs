@@ -15,7 +15,6 @@ namespace SetUp.View
         private Picker SubgroupPicker;
         private Button Login;
 
-
         private Dictionary<String, String> GetDictOfCodes()
         {
             Dictionary<String, String> dict = new Dictionary<string, string>
@@ -95,7 +94,6 @@ namespace SetUp.View
             Image logo = new Image
             {
                 Source = Device.RuntimePlatform == Device.Android ? "SetUp.Android/Resources/drawable/logo.png" : "SetUp.iOS/Resources/drawable/logo.png",
-                //Source = Device.RuntimePlatform == Device.Android ? "SetUp.Android/Resources/drawable/lgg.png" : "SetUp.iOS/Resources/drawable/logo.png",
             };
 
             Login = new Button

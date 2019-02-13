@@ -1,18 +1,12 @@
 ﻿using SetUp.Model;
 using SetUp.View.FontIconApp.UserControls;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
 using Xamarin.Forms;
 
 namespace SetUp.View
 {
     class ClassView : StackLayout
     {
-        //private readonly Color CursColor = Color.FromHex("5CDB95");
-        //private readonly Color SeminarColor = Color.FromHex("3AAFA9");
-        //private readonly Color LabColor = Color.FromHex("3B945E");
         public Color MyColor { get; set; }
         private ClassModel ClassObj { get; set; }
 
@@ -143,7 +137,6 @@ namespace SetUp.View
 
             Grid line1 = new Grid
             {
-                //Margin = new Thickness(20, 20, 10, 0),
                 ColumnDefinitions =
                 {
                     new ColumnDefinition { Width = new GridLength(0.1, GridUnitType.Star) },
@@ -159,7 +152,6 @@ namespace SetUp.View
 
             Grid line2 = new Grid
             {
-                //Margin = new Thickness(20, 0, 10, 0),
                 ColumnDefinitions =
                 {
                     new ColumnDefinition { Width = new GridLength(0.1, GridUnitType.Star) },
@@ -175,7 +167,6 @@ namespace SetUp.View
 
             Grid line3 = new Grid
             {
-                //Margin = new Thickness(20, 0, 10, 10),
                 ColumnDefinitions =
                 {
                     new ColumnDefinition { Width = new GridLength(0.1, GridUnitType.Star) },

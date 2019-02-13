@@ -21,7 +21,6 @@ public class NavigationPageRendererDroid : Xamarin.Forms.Platform.Android.AppCom
         context = (Activity)Xamarin.Forms.Forms.Context;
         toolbar = context.FindViewById<Android.Support.V7.Widget.Toolbar>(SetUp.Droid.Resource.Id.toolbar);
 
-
         if (toolbar != null)
         {
             if (toolbar.NavigationIcon != null)

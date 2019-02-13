@@ -25,7 +25,6 @@ namespace SetUp.Repository
                 {
                     Stream receiveStream = response.GetResponseStream();
                     StreamReader readStream = null;
-
                     if (response.CharacterSet == null)
                     {
                         readStream = new StreamReader(receiveStream);
@@ -34,7 +33,6 @@ namespace SetUp.Repository
                     {
                         readStream = new StreamReader(receiveStream, Encoding.GetEncoding(response.CharacterSet));
                     }
-
                     String data = readStream.ReadToEnd();
 
                     response.Close();
@@ -100,7 +98,6 @@ namespace SetUp.Repository
             return groups;
         }
 
-
         public static List<ClassModel> ExtractClasses(String url)
         {
             List<String> data = new List<String>();
@@ -113,7 +110,6 @@ namespace SetUp.Repository
             }
             
             List <ClassModel> classes = new List<ClassModel>();
-
             foreach (String line in data.Skip(1))
             {            
 
@@ -142,7 +138,6 @@ namespace SetUp.Repository
                 if (!(classes.Contains(c)))
                     classes.Add(c);
             }
-
 
             //replace interchanged classes
             try
@@ -186,7 +181,6 @@ namespace SetUp.Repository
                 }
             }
             catch (Exception) { }
-
 
             //apply custom edits
             try
@@ -260,7 +254,6 @@ namespace SetUp.Repository
                 }
             }
             catch (Exception) { }
-
 
             allClasses = classes;
 

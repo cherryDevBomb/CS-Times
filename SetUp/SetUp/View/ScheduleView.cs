@@ -8,17 +8,13 @@ namespace SetUp.View
 {
     class ScheduleView : TabbedPage
     {
-        
         public ScheduleModel ScheduleObj { get; set; }
-
 
         //constructor that creates Schedule of current week
         public ScheduleView(String formation, String group, String subgroup)
         {
-
             int weekNr = TimeManager.WeekNr;
             int academicWeekNr = TimeManager.GetAcademicWeekNr(weekNr);
-
             int dayNr = GetDayIndex();
 
             if (dayNr == 5 || dayNr == -1) //weekend
@@ -42,7 +38,6 @@ namespace SetUp.View
             
             CurrentPage = Children[dayNr];
         }
-
 
         //constructor that creates schedule of week specified by parameter
         public ScheduleView(String formation, String group, String subgroup, int weekNr)

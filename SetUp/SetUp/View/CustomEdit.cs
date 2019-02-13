@@ -2,14 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using Xamarin.Forms;
 
 namespace SetUp.View
 {
     class CustomEdit : ContentPage
     {
-
         private ClassModel ClassMdl { get; set; }
         public CustomEdit(ClassModel c)
         {
@@ -67,7 +65,6 @@ namespace SetUp.View
                 WeekPicker.IsVisible = false;
             }
 
-
             var saveButton = new Button
             {
                 Text = "Save changes",
@@ -117,7 +114,6 @@ namespace SetUp.View
             }
         }
 
-
         void OnWeekPickerSelectedIndexChanged(object sender, EventArgs e)
         {
             var picker = (Picker)sender;
@@ -133,7 +129,6 @@ namespace SetUp.View
         {
             WriteToFile();
         }
-
 
         void WriteToFile()
         {

@@ -10,8 +10,6 @@ namespace SetUp.Model
         public static int Semester { get; set; }
         public static int WeekNr { get; set; }
         public static int AcademicWeekNr { get; set; }
-
-        //added for debug
         public static DateTime Today { get; set; }
 
         private static readonly List<DateTime> FreeDays = new List<DateTime>
@@ -117,7 +115,6 @@ namespace SetUp.Model
             return academicWeekNr;
         }
 
-
         public static List<DateTime> GetDates(int weekNr)
         {
             int diff = 0;
@@ -125,12 +122,6 @@ namespace SetUp.Model
                 diff = 0;
             else if (weekNr == WeekNr + 1)
                 diff = 7;
-
-            //var monday = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek + (int)DayOfWeek.Monday + diff);
-            //var tuesday = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek + (int)DayOfWeek.Tuesday + diff);
-            //var wednesday = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek + (int)DayOfWeek.Wednesday + diff);
-            //var thursday = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek + (int)DayOfWeek.Thursday + diff);
-            //var friday = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek + (int)DayOfWeek.Friday + diff);
 
             var monday = Today.AddDays(-(int)Today.DayOfWeek + (int)DayOfWeek.Monday + diff);
             var tuesday = Today.AddDays(-(int)Today.DayOfWeek + (int)DayOfWeek.Tuesday + diff);
@@ -149,7 +140,6 @@ namespace SetUp.Model
 
             return dates;
         }
-
 
         public static bool IsFreeDay(DateTime date)
         {

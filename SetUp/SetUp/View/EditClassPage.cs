@@ -49,7 +49,6 @@ namespace SetUp.View
                 }
             };
 
-
             var msg = new Label
             {
                 Text = "Custom edit your class",
@@ -77,7 +76,6 @@ namespace SetUp.View
                 Margin = new Thickness(16, 8),
                 Content = msg,
             };
-
 
             var msg2 = new Label
             {

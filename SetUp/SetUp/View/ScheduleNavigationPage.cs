@@ -78,7 +78,6 @@ namespace SetUp.View
             }
         }
 
-
         async void OnNextPageButtonClicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new ScheduleView(StudentInfoModel.YearFormation, StudentInfoModel.Group, StudentInfoModel.Subgroup, TimeManager.WeekNr + 1));

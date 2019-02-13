@@ -28,8 +28,7 @@ namespace SetUp
             else
             {
                 MainPage = new ErrorPage();
-            }
-            
+            } 
         }
 
 

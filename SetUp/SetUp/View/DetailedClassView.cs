@@ -50,7 +50,6 @@ namespace SetUp.View
             Grid line2 = (Grid)child.Children[1];
             Grid line3 = (Grid)child.Children[2];
 
-
             Grid lines = new Grid
             {
                 RowSpacing = 10,
@@ -68,22 +67,6 @@ namespace SetUp.View
             lines.Children.Add(line3, 0, 3);
 
             parent.Content = lines;
-
-            //Frame f = new Frame
-            //{
-            //    Content = lines,
-            //    BackgroundColor = Color.Transparent,
-            //    BorderColor = MyColor,
-            //    CornerRadius = 4,
-            //};
-
-            
-            //child.RowDefinitions.Insert(0, new RowDefinition { Height = new GridLength(0, GridUnitType.Auto) });
-            
-            //((Frame)Children[0]).Content
-            //((Grid)Children[1]).Children.Add(day, 2, 0);
-
-            //Children.Add(line);
         }
     }
 }

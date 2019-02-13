@@ -1,9 +1,0 @@
-﻿
-
-! change date in TimeManager to now
-
-
-- find resources
-
-
-old curscolor #5CDB95 

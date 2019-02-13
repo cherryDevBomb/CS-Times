@@ -17,7 +17,6 @@ namespace SetUp.View
 
         public static class Icon
         {
-
             public static readonly string FAClockO = "\uf017";  //time icon
             public static readonly string FAPencil = "\uf040";  //edit icon
             public static readonly string FALocationArrow = "\uf124"; //location 

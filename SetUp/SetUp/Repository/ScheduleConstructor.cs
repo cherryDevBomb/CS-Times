@@ -11,7 +11,7 @@ namespace SetUp.Repository
         {
             String urlBuilder = "http://www.cs.ubbcluj.ro/files/orar/";
             String year = "";
-            DateTime currentDate = TimeManager.Today;     //DateTime.Now;
+            DateTime currentDate = TimeManager.Today;
             if (TimeManager.Semester == 1)
             { 
                 if (currentDate.Month > 9)
@@ -30,7 +30,6 @@ namespace SetUp.Repository
             urlBuilder = urlBuilder + year + "/tabelar/" + formation + ".html";
             return urlBuilder;
         }
-
 
         public static ScheduleModel GetSchedule(String yearFormation, String group, String subgroup, int weekNr)
         {

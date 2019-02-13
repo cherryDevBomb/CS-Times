@@ -49,12 +49,10 @@ namespace SetUp.View
             Content = view;
         }
 
-
         async void OnExitEditClicked(object sender, EventArgs e)
         {
             await Navigation.PopModalAsync();
         }
-
 
         private Grid GetOptionView(String className)
         {

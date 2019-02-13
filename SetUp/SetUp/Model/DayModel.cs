@@ -21,6 +21,5 @@ namespace SetUp.Model
                 Classes.Add(clas);
             Classes.Sort((x, y) => TimeSpan.Compare(x.StartTime, y.StartTime));
         }
-
     }
 }
