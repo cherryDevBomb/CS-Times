@@ -21,8 +21,9 @@ namespace SetUp.View
             public static readonly string FAPencil = "\uf040";  //edit icon
             public static readonly string FALocationArrow = "\uf124"; //location 
             public static readonly string FACopyright = "\uf1f9";
-            public static string FAUser = "\uf007";             //teacher icon
-            public static string FAArrowRight = "\uf061";   //right arrow
+            public static readonly string FAUser = "\uf007";             //teacher icon
+            public static readonly string FAArrowRight = "\uf061";   //right arrow
+            public static readonly string FASmileO = "\uf118";       //smile icon
         }
     }
 }

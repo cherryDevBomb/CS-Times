@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-
+using Xamarin.Forms;
 
 namespace SetUp.Model
 {
@@ -14,6 +14,7 @@ namespace SetUp.Model
 
         public static void SaveLoginInfo()
         {
+
             var filepath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "LoginCredentials.txt");
 
             using (var writer = new StreamWriter(filepath))

@@ -1,4 +1,5 @@
 ﻿using SetUp.Model;
+using SetUp.View.FontIconApp.UserControls;
 using System;
 using Xamarin.Forms;
 
@@ -31,13 +32,20 @@ namespace SetUp.View
             }
             else
             {
+                layout.Children.Add(new FontAwesomeLabel
+                {
+                    Text = FontIconApp.UserControls.Icon.FASmileO,
+                    FontSize = Device.GetNamedSize(NamedSize.Large, typeof(Label)),
+                    HorizontalOptions = LayoutOptions.Center,
+                    Margin = new Thickness(0, 130, 0, 0)                    
+                });
+
                 layout.Children.Add(new Label
                 {
                     Text = "Well deserved rest",
                     FontSize = Device.GetNamedSize(NamedSize.Large, typeof(Label)),
                     HorizontalOptions = LayoutOptions.Center,
-                    VerticalOptions = LayoutOptions.Center,
-                    Margin = new Thickness(0, 100),
+                    VerticalOptions = LayoutOptions.Center
                 });
             }
 

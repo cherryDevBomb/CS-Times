@@ -16,7 +16,7 @@ namespace SetUp.View
                     {
                         Source = Device.RuntimePlatform == Device.Android ? "SetUp.Android/Resources/drawable/outline_error_outline_black_18dp.png"
                                                                   : "SetUp.iOS/Resources/drawable/outline_error_outline_black_18dp.png",
-                        Margin = new Thickness(0, 50)
+                        Margin = new Thickness(0, 130, 0, 10)
                     },
 
                     new Label

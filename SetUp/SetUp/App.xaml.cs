@@ -1,10 +1,6 @@
-using Android;
-using Android.Content.PM;
 using Plugin.Connectivity;
 using SetUp.Model;
 using SetUp.View;
-using System;
-using System.IO;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 

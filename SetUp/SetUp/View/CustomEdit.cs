@@ -34,10 +34,9 @@ namespace SetUp.View
             {
                 hours.Add(i + ":00");
             }
-            String oldHour = ClassMdl.StartTime.Hours + ":00";
             var StartTimePicker = new Picker()
             {
-                Title = oldHour,
+                Title = "Chose hour",
                 ItemsSource = hours,
                 TextColor = (Color)Application.Current.Resources["cursColor"],
             };
@@ -46,7 +45,7 @@ namespace SetUp.View
 
             var DayPicker = new Picker()
             {
-                Title = ClassMdl.Day,
+                Title = "Choose day",
                 ItemsSource = new List<String>() { "Luni", "Marti", "Miercuri", "Joi", "Vineri" },
             TextColor = (Color)Application.Current.Resources["seminarColor"],
             };
@@ -55,7 +54,7 @@ namespace SetUp.View
 
             var WeekPicker = new Picker()
             {
-                Title = ClassMdl.WhichWeek,
+                Title = "Choose week",
                 ItemsSource = new List<String>() { "", "1", "2" },
                 TextColor = (Color)Application.Current.Resources["labColor"],
             };
