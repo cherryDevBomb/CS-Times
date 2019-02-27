@@ -116,11 +116,11 @@ namespace SetUp.Model
 
         public static List<DateTime> GetDates(int weekNr)
         {
-            int diff = 0;
+            int diff = Today.DayOfWeek == DayOfWeek.Saturday ? 7 : 0;
             if (weekNr == WeekNr)
-                diff = 0;
+                diff = diff + 0;
             else if (weekNr == WeekNr + 1)
-                diff = 7;
+                diff = diff + 7;
 
             var monday = Today.AddDays(-(int)Today.DayOfWeek + (int)DayOfWeek.Monday + diff);
             var tuesday = Today.AddDays(-(int)Today.DayOfWeek + (int)DayOfWeek.Tuesday + diff);
